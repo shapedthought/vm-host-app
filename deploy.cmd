@@ -88,14 +88,13 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-
 :: 1. Select node version
 call :SelectNodeVersion
 
 :: 2. Install npm packages
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
-  call :ExecuteCmd !NPM_CMD! install --production
+  call :ExecuteCmd !NPM_CMD! install --prod
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )

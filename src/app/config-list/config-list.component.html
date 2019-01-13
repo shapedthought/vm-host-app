@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" routerLink="/config">Add Config</button>
+  </div>
+</div>
+<br>
+<div class="row" *ngIf="!configShow" >
+  <div class="col">
+    <H3>Create your first config!</H3>
+  </div>
+  </div>
+<div class="row" *ngIf="configShow" >
+  <div class="col">
+    <app-config-item
+      *ngFor="let config of configurations; let i = index"
+      [config]="config"
+      [index]="i"
+      [routerLink]="['/config', i]"
+    ></app-config-item>
+  </div>
+</div>

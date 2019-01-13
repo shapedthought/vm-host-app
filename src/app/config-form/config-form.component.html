@@ -1,0 +1,72 @@
+
+
+<form [formGroup]="envReqForm">
+  <div class="row">
+    <div class="col-3">
+      <label for="configName">Configuration Name</label>
+      <input type="text" id="configName" formControlName="configName" class="form-control form-control-md">
+    </div>
+  </div>t
+  <div class="row">
+    <div class="col">
+      <h3 class="mb-3">VMware Requirements</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="reqCpu">Required vCPUs</label>
+      <input type="number" id="reqCpu" formControlName="reqCpu" class="form-control form-control-md">
+    </div>
+
+    <div class="col">
+      <label for="reqRam">Required RAM</label>
+      <input type="number" id="reqRam" formControlName="reqRam" class="form-control form-control-md">
+    </div>
+
+    <div class="col">
+      <label for="pToV">P to V ratio:</label>
+      <input type="number" id="pToV" formControlName="pToV" class="form-control form-control-md">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3 class="mb-3">Host Spec:</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label for="sockets">Sockets per host</label>
+      <input type="number" id="sockets" formControlName="sockets" class="form-control form-control-md">
+    </div>
+
+    <div class="col-3">
+      <label for="coresSocket">Cores per socket</label>
+      <input type="number" id="coresSocket" formControlName="coresSocket" class="form-control form-control-md">
+    </div>
+    <div class="col-3">
+      <label for="ram">Ram per host:</label>
+      <input type="number" id="ram" formControlName="ram" class="form-control form-control-md">
+    </div>
+  </div>
+  <div class="row mt-3">
+    <button type="submit" [disabled]="!envReqForm.valid" class="btn btn-primary ml-3" (click)="onCalculate()">Calculate</button>
+  </div>
+</form>
+<div class="row">
+  <div class="col">
+    <h3>Results (N+1)</h3>
+    <ul>
+      <li>Hosts Required CPU: {{ cpuHostsReq }}</li>
+      <li>Hosts Required RAM: {{ ramHostReq }}</li>
+    </ul>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" *ngIf="!editMode" [disabled]="!calRun" (click)="onSave()">Save</button>
+    <button class="btn btn-primary" *ngIf="editMode" [disabled]="!calRun" (click)="onUpdate()" >Update</button>
+    <button class="btn btn-danger" *ngIf="editMode" (click)="onDelete()">Delete</button>
+    <button class="btn btn-dark float-right" routerLink="/config_list">Back</button>
+  </div>
+</div>
